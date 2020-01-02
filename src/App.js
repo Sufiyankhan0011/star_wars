@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
+import Login from './Login';
+// import Home from './Home';
+import Appwrapper from './Appwrapper';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  
+  render() {
+    // let user =null;
+    // user = JSON.parse(sessionStorage.getItem('user'));
+    // if(user == null)
+    // {
+    //   return <Redirect to='/'  />
+    // }
+    return (
+      <div className="App">
+        <Switch>
+            <Route exact path="/" exact render = {props => <Login {...props} /> } />
+            <Route path="/home" exact render = {props => <Appwrapper {...props} /> } />
+            {/* <Route path="/logout" exact render = {props => <Login {...props} /> } /> */}
+        </Switch>
+        {/* <Login parentContext={this}/> */}
+      </div>
+    );
+  }
 }
-
-export default App;
+const style = {
+  margin: 15,
+};
+export default withRouter(App);
